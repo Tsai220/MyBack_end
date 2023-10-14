@@ -17,7 +17,7 @@ class List(models.Model):
     inListMusic = models.ManyToManyField(MusicDB, through="MusicList")
     list_id = models.AutoField(primary_key=True )  # 沒自動生成?
     user_id = models.ForeignKey(UserInfo, to_field="user_id", on_delete=models.CASCADE)
-    list_name = models.CharField(max_length=10, null=True)
+    list_name = models.CharField(max_length=15, null=True)
     listThumbnails = models.URLField(max_length=254, null=True, validators=[URLValidator()])
 
 

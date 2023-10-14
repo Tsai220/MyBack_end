@@ -124,7 +124,37 @@ class ShowList(APIView):
             listBox.append(element)
 
 
-        print(listBox)
+
         return Response(listBox,status=status.HTTP_200_OK)
+
+class SongInList(APIView):
+    def post(self,request):
+
+        data=request.data
+        GlistId=data.get('listId')
+
+        GsongCount=MusicList.objects.filter(list_id=GlistId).values("video_id")
+        print(GsongCount)
+        videoIdList=[]
+        videoInfo=[]
+        for iid in GsongCount:
+            videoIdList.append(iid['video_id'])
+            print(videoIdList)
+        for music in videoIdList:
+            GetvideoInfo=MusicDB.objects.get(video_id=music)
+            obj={
+                "videoId":GetvideoInfo.videoId,
+                "videoThumbnails": GetvideoInfo.videoThumbnails,
+                "videoTitle": GetvideoInfo.videoTitle,
+                "channel_id":GetvideoInfo.channel_id,
+                "channel_name":GetvideoInfo.channel_name
+
+
+            }
+            videoInfo.append(obj)
+        print(videoInfo)
+
+
+        return Response(videoInfo,status=status.HTTP_200_OK)
 
 
