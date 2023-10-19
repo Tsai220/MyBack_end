@@ -159,3 +159,22 @@ class SongInList(APIView):
         print(videoInfo)
 
         return Response(videoInfo, status=status.HTTP_200_OK)
+
+class DeleteThis(APIView):
+    def post(self,request):
+        # list_id  AND  video_id 需符合刪除目標
+        data=request.data
+        try:
+
+            decode = RefreshToken(request.data.get('rToken'))
+            Response(status=status.HTTP_403_FORBIDDEN)
+        except Exception as err:
+            return Response(str(err), status.HTTP_403_FORBIDDEN)
+        else:
+
+            userId = decode.payload.get('id')
+            thisList= escape(data.get('thisList'))
+            thisSongId=escape(data.get('video_id'))
+            getThisMusicId=MusicDB.objects.filter(videoId=thisSongId).values("video_id")
+            MusicList.objects.filter(list_id_id__in=thisList,video_id_id__in=getThisMusicId).delete()
+            return Response(status.HTTP_200_OK)
