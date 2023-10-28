@@ -8,4 +8,5 @@ urlpatterns=[
     path('ShowList',views.ShowList.as_view(),name='ShowList'),
     path('SongInList',views.SongInList.as_view(),name='SongInList'),
     path('DeleteThis',views.DeleteThis.as_view(),name='DeleteThis')
+
 ]

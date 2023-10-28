@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'usrInfo.apps.UsrinfoConfig',
     'Login.apps.LoginConfig',
     'UserMusicList.apps.UsermusiclistConfig',
+    'daily.apps.DailyConfig',
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',

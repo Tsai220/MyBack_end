@@ -27,6 +27,6 @@ urlpatterns = [
     path('api/token/blacklist/',TokenBlacklistView.as_view(),name='token_blacklist'),
     path('user/',include("Register.urls")),
     path('user/',include("Login.urls")),
-    path('user/mylist/',include("UserMusicList.urls"))
-    #path("user/",include("authentication.urls"))
+    path('user/mylist/',include("UserMusicList.urls")),
+    path('user/dialy/',include("daily.urls")),
 ]

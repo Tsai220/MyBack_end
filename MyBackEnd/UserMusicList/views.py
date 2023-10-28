@@ -110,7 +110,7 @@ class AddtoList(APIView):
 class ShowList(APIView):
     def post(self, request):
         data = request.data
-
+        print(data,"...")
         try:
 
             decode = RefreshToken(request.data.get('rToken'))
